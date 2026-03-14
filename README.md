@@ -40,11 +40,18 @@ eksctl create cluster \
 --nodes-max 3 \
 --managed
 ```
-for checking if the node created fine 
-use below commands 
 setup
 =====
 aws eks update-kubeconfig --region us-east-1 --name brain-project-cluster1
+
+confirm cluser
+==============
+eksctl get cluster --region us-east-1
+aws eks describe-cluster --name brain-project-cluster1 --region us-east-1
+aws eks list-clusters --region us-east-1
+
+
+### For checking if the node created fine use below commands 
 
 This code will provide space there will be memory issue for t3.micro  if you proceed without this scale up some time you will meet with this space issue error 
 
@@ -63,13 +70,6 @@ eksctl scale nodegroup \
 ```
 Create namespace brain 
 kubectl create namespace brain
-
-
-confirm cluser
-==============
-eksctl get cluster --region us-east-1
-aws eks describe-cluster --name brain-project-cluster1 --region us-east-1
-aws eks list-clusters --region us-east-1
 
 ### To see the hosted site and get url 
 kubectl get pods -n brain
