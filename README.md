@@ -9,7 +9,7 @@ The main requirement for the project is :
 - kubectl
 - eksctl
 
-Pipeline 
+## Pipeline 
 
 Source --> Build ---> deploy 
 
