@@ -38,8 +38,24 @@ setup
 =====
 aws eks update-kubeconfig --region us-east-1 --name brain-project-cluster1
 
+this code will provide space there will be memory issue for t3.micro  if you proceed without this scale up
+"
+
+  Warning  FailedScheduling  20m                  default-scheduler  0/2 nodes are available: 1 Insufficient memory, 2 Too many pods. no new claims to deallocate, preemption: 0/2 nodes are available: 2 No preemption victims found for incoming pod.
+  Warning  FailedScheduling  9m58s (x2 over 14m)  default-scheduler  0/2 nodes are available: 1 Insufficient memory, 2 Too many pods. no new claims to deallocate, preemption: 0/2 nodes are available: 2 No preemption victims found for incoming pod.
+
+"
+```sh
+eksctl scale nodegroup \
+--cluster brain-project-cluster1 \
+--name brain-nodes1 \
+--nodes 3 \
+--region us-east-1
+```
+
 confirm cluser
 ==============
 eksctl get cluster --region us-east-1
 aws eks describe-cluster --name brain-project-cluster1 --region us-east-1
 aws eks list-clusters --region us-east-1
+
