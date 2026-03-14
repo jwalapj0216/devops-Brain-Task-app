@@ -1,4 +1,5 @@
 # Devops Braintask project
+Create an EC2 instance with admin or required accesss 
 
 The main requirement for the project is :
 
@@ -9,6 +10,8 @@ The main requirement for the project is :
 - eksctl
 
 ## Creating an ECR Repository for the project
+
+we can create ECR repository jwala/brain-app either using GUI or by below clicommand 
 
 ```sh
 aws ecr create-repository \
@@ -29,3 +32,5 @@ eksctl create cluster \
 --nodes-max 3 \
 --managed
 ```
+for checking if the node created fine 
+use below commands 
