@@ -34,3 +34,12 @@ eksctl create cluster \
 ```
 for checking if the node created fine 
 use below commands 
+setup
+=====
+aws eks update-kubeconfig --region us-east-1 --name brain-project-cluster1
+
+confirm cluser
+==============
+eksctl get cluster --region us-east-1
+aws eks describe-cluster --name brain-project-cluster1 --region us-east-1
+aws eks list-clusters --region us-east-1
