@@ -2,8 +2,11 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: brain-tasks-deployment
+  namespace: brain
+  labels:
+    app: brain-tasks
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: brain-tasks
@@ -13,8 +16,31 @@ spec:
         app: brain-tasks
     spec:
       containers:
-      - name: brain-tasks
+      - name: brain-tasks-container
         image: 106760547958.dkr.ecr.us-east-1.amazonaws.com/jwala/brain-tasks-app:latest
+        imagePullPolicy: Always
         ports:
-        - containerPort: 3000
+        - containerPort: 5000
+
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
+          limits:
+            cpu: "200m"
+            memory: "256Mi"
+
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 5000
+          initialDelaySeconds: 10
+          periodSeconds: 5
+
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 3000
+          initialDelaySeconds: 20
+          periodSeconds: 10
         
