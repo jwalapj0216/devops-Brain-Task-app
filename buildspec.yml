@@ -1,7 +1,6 @@
-version: 0.2version: 0.2
+version: 0.2
 
 phases:
-
   pre_build:
     commands:
       - echo Logging in to Amazon ECR
@@ -17,5 +16,5 @@ phases:
 
   post_build:
     commands:
-      - echo Pushing Docker image to ECR
+      - echo Pushing image to ECR
       - docker push $REPOSITORY_URI:$IMAGE_TAG
