@@ -17,7 +17,7 @@ spec:
       - name: brain-tasks
         image: 106760547958.dkr.ecr.us-east-1.amazonaws.com/jwala/brain-tasks-app:latest
         ports:
-        - containerPort: 5000
+        - containerPort: 3000
         resources:
           requests:
             cpu: "50m"
