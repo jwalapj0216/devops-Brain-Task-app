@@ -9,6 +9,14 @@ The main requirement for the project is :
 - kubectl
 - eksctl
 
+Pipeline 
+
+Source --> Build ---> deploy 
+
+- source will get trigered when some commit happens in github (developer commit code). It will get all the code
+- Build will create a docker image and upload in ECR, code build is used to run the docker command and upload and create the environement for running app
+- Deploy will run deply the application in kubernetes cluster 
+
 ## Creating an ECR Repository for the project
 
 we can create ECR repository jwala/brain-app either using GUI or by below clicommand 
@@ -38,7 +46,8 @@ setup
 =====
 aws eks update-kubeconfig --region us-east-1 --name brain-project-cluster1
 
-this code will provide space there will be memory issue for t3.micro  if you proceed without this scale up
+This code will provide space there will be memory issue for t3.micro  if you proceed without this scale up some time you will meet with this space issue error 
+
 "
 
   Warning  FailedScheduling  20m                  default-scheduler  0/2 nodes are available: 1 Insufficient memory, 2 Too many pods. no new claims to deallocate, preemption: 0/2 nodes are available: 2 No preemption victims found for incoming pod.
@@ -52,10 +61,17 @@ eksctl scale nodegroup \
 --nodes 3 \
 --region us-east-1
 ```
+Create namespace brain 
+kubectl create namespace brain
+
 
 confirm cluser
 ==============
 eksctl get cluster --region us-east-1
 aws eks describe-cluster --name brain-project-cluster1 --region us-east-1
 aws eks list-clusters --region us-east-1
+
+### To see the hosted site and get url 
+kubectl get pods -n brain
+kubectl get svc -n brain
 
