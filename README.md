@@ -20,8 +20,12 @@ aws ecr create-repository \
 
 ```sh
 eksctl create cluster \
---name brain-cluster \
---region ap-south-1 \
---node-type t3.medium \
---nodes 2
+--name brain-project-cluster1 \
+--region us-east-1 \
+--nodegroup-name brain-nodes1 \
+--node-type t3.micro \
+--nodes 2 \
+--nodes-min 2 \
+--nodes-max 3 \
+--managed
 ```
